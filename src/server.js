@@ -19,7 +19,5 @@ connectDB();
 
 let port = process.env.PORT || 6969;
 // Port === undefined => port = 6969
-app.listen(port, () => {
-    //callback function
-    console.log(`Server is running on port ${port}`);
-});
+const host = process.env.HOST || "127.0.0.1";
+app.listen(port, host, () => console.log(`Server started on ${host}:${port}`));

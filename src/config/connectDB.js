@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize('bookingcare', 'root', null, {
   host: 'localhost',
-  port: 3360,// nếu chỉnh port của xampp(default: 3306) thì phải thêm dòng tinh chỉnh port này
+  port: 3306,// nếu chỉnh port của xampp(default: 3306) thì phải thêm dòng tinh chỉnh port này
   dialect: 'mysql',/* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
   logging: false
 });

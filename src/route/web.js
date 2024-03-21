@@ -8,10 +8,11 @@ let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/about', homeController.getAboutPage);
     router.get('/crud', homeController.getCRUD);
-
+    router.get('/get-crud', homeController.displayGetCRUD);
     router.post('/post-crud', homeController.postCRUD);
-
-
+    router.post('/put-crud', homeController.putCRUD);//method put
+    router.get('/edit-crud', homeController.getEditCRUD);
+    router.get('/delete-crud', homeController.deleteCRUD); // method delete
 
     router.post('/api/login', userController.handleLogin);
     router.get('/api/get-all-users', userController.handleGetAllUsers);

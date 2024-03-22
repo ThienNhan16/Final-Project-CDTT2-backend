@@ -125,13 +125,15 @@ let createNewUser = (data) => {
                     lastName: data.lastName,
                     address: data.address,
                     phoneNumber: data.phoneNumber,
-                    gender: data.gender === '1' ? true : false,  // Male is true and Female is false
+                    gender: data.gender,
                     roleId: data.roleId, // default user
+                    positionId: data.positionId,
+                    image: data.avatar
                 });
 
                 resolve({
                     errCode: 0,
-                    message: 'OK'
+                    errmessage: 'OK'
                 });
             }
         } catch (e) {
@@ -166,7 +168,7 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data) {
+            if (!data.id || !data.roleId || !data.positionId || !data.gender) {
                 resolve({
                     errCode: 2,
                     errMessage: 'Missing required parameters',
@@ -177,10 +179,16 @@ let updateUserData = (data) => {
                 raw: false
             })
             if (user) {
-                user.firstName = data.firstName,
-                    user.lastName = data.lastName,
-                    user.address = data.address
+                user.firstName = data.firstName;
+                    user.lastName = data.lastName;
+                    user.address = data.address;
+                    user.roleId = data.roleId;
+                    user.positionId = data.positionId;
+                    user.gender = data.gender;
+                    user.phoneNumber = data.phoneNumber;
+
                 await user.save();
+
                 resolve({
                     errCode: 0,
                     errMessage: 'Update the user succeeds'

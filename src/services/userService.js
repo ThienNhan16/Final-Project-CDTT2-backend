@@ -81,7 +81,7 @@ let getAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
             let users = ''
-            if (userId === 'ALL') {
+            if (userId && userId === 'ALL') {
                 users = await db.User.findAll({
                     attributes: {
                         exclude: ['password']
@@ -180,13 +180,15 @@ let updateUserData = (data) => {
             })
             if (user) {
                 user.firstName = data.firstName;
-                    user.lastName = data.lastName;
-                    user.address = data.address;
-                    user.roleId = data.roleId;
-                    user.positionId = data.positionId;
-                    user.gender = data.gender;
-                    user.phoneNumber = data.phoneNumber;
-
+                user.lastName = data.lastName;
+                user.address = data.address;
+                user.roleId = data.roleId;
+                user.positionId = data.positionId;
+                user.gender = data.gender;
+                user.phoneNumber = data.phoneNumber;
+                if(data.avatar){
+                    user.image = data.avatar;
+                }
                 await user.save();
 
                 resolve({
